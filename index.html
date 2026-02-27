@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hemocultura · Sepse vs Neutropenia · Bem-T Care</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f0f7fc;
+            font-family: 'Inter', sans-serif;
+            color: #153e4f;
+            line-height: 1.5;
+        }
+
+        :root {
+            --sepse: #1a7a8c;
+            --sepse-light: #d2f0f5;
+            --neutro: #b6573a;
+            --neutro-light: #fceae5;
+            --primary-dark: #073b4b;
+            --accent: #e68a5c;
+            --success: #2f8d6c;
+            --warning: #c44536;
+            --card-shadow: 0 25px 40px -16px rgba(0, 60, 80, 0.25);
+        }
+
+        .navbar {
+            background: var(--primary-dark);
+            color: white;
+            padding: 1rem 2.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 6px 18px rgba(0,35,55,0.4);
+        }
+
+        .navbar .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .navbar .logo i {
+            color: #f7c46e;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #e0f0ff;
+            text-decoration: none;
+            font-weight: 500;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover {
+            border-bottom-color: var(--accent);
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(125deg, #ffffff, #e2f2f9);
+            border-radius: 48px;
+            padding: 3rem 3.5rem;
+            margin: 2rem 0;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(27,122,140,0.2);
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            color: #0b3e52;
+            line-height: 1.2;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .badge {
+            background: white;
+            padding: 0.5rem 1.8rem;
+            border-radius: 60px;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            border: 1px solid #cde3ed;
+        }
+
+        .badge-protocolo {
+            display: inline-block;
+            padding: 0.3rem 1.2rem;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            background: var(--primary-dark);
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        /* CARDS PRINCIPAIS - SEPSE E NEUTROPENIA */
+        .protocolos-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .card-sepse, .card-neutro {
+            border-radius: 48px;
+            padding: 2.5rem;
+            box-shadow: var(--card-shadow);
+            transition: 0.2s;
+            background: white;
+            border: 2px solid;
+        }
+
+        .card-sepse {
+            border-color: var(--sepse);
+            background: linear-gradient(145deg, #ffffff, #f6fcff);
+        }
+
+        .card-neutro {
+            border-color: var(--neutro);
+            background: linear-gradient(145deg, #ffffff, #fff8f3);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card-header i {
+            font-size: 3rem;
+            padding: 1rem;
+            border-radius: 30px;
+        }
+
+        .card-sepse .card-header i {
+            background: var(--sepse-light);
+            color: var(--sepse);
+        }
+
+        .card-neutro .card-header i {
+            background: var(--neutro-light);
+            color: var(--neutro);
+        }
+
+        .card-header h2 {
+            font-size: 2.2rem;
+            font-family: 'Outfit', sans-serif;
+            margin: 0;
+            border: none;
+            padding: 0;
+        }
+
+        .info-block {
+            background: rgba(255,255,255,0.8);
+            border-radius: 32px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            backdrop-filter: blur(2px);
+        }
+
+        .info-linha {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .info-linha i {
+            width: 28px;
+            font-size: 1.2rem;
+        }
+
+        .card-sepse .info-linha i {
+            color: var(--sepse);
+        }
+
+        .card-neutro .info-linha i {
+            color: var(--neutro);
+        }
+
+        .amostra-destaque {
+            background: white;
+            border-radius: 40px;
+            padding: 1.5rem;
+            margin: 1.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            border-left: 12px solid;
+        }
+
+        .card-sepse .amostra-destaque {
+            border-left-color: var(--sepse);
+        }
+
+        .card-neutro .amostra-destaque {
+            border-left-color: var(--neutro);
+        }
+
+        .amostra-numero {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1;
+            color: var(--primary-dark);
+        }
+
+        .triplo-card {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .micro-card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.2rem;
+            text-align: center;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.02);
+            border: 1px solid #e1f0f5;
+        }
+
+        .micro-card i {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-sepse .micro-card i {
+            color: var(--sepse);
+        }
+
+        .card-neutro .micro-card i {
+            color: var(--neutro);
+        }
+
+        .antimicrobiano-box {
+            background: rgba(0,0,0,0.02);
+            border-radius: 28px;
+            padding: 1.2rem;
+            margin: 1rem 0;
+            font-weight: 500;
+            border: 1px dashed;
+        }
+
+        .card-sepse .antimicrobiano-box {
+            border-color: var(--sepse);
+        }
+
+        .card-neutro .antimicrobiano-box {
+            border-color: var(--neutro);
+        }
+
+        /* TÉCNICA DE COLETA - 4 BLOCOS */
+        .tecnica-titulo {
+            font-size: 2.2rem;
+            font-family: 'Outfit', sans-serif;
+            margin: 2.5rem 0 1.5rem;
+            border-left: 12px solid var(--primary-dark);
+            padding-left: 1.5rem;
+        }
+
+        .tecnica-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .tecnica-bloco {
+            background: white;
+            border-radius: 28px;
+            padding: 1.8rem;
+            box-shadow: 0 15px 25px -10px rgba(0,60,80,0.15);
+            border: 1px solid #d6ecf5;
+            transition: 0.2s;
+            position: relative;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tecnica-bloco:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-dark);
+        }
+
+        .bloco-numero {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            opacity: 0.15;
+            position: absolute;
+            top: 5px;
+            right: 15px;
+            line-height: 1;
+            z-index: 1;
+        }
+
+        .bloco-conteudo {
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+
+        .bloco-conteudo p {
+            margin: 0.8rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .bloco-conteudo i {
+            color: var(--sepse);
+            width: 24px;
+            margin-top: 3px;
+        }
+
+        .destaque-secagem {
+            background: #f4cccc;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            display: inline-block;
+            margin: 0.5rem 0;
+            font-weight: 600;
+        }
+
+        .ordem-lista {
+            margin-left: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .alerta-volume {
+            background: #fceaea;
+            border-radius: 40px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0;
+            border-left: 10px solid var(--warning);
+            font-weight: 500;
+            clear: both;
+        }
+
+        /* IDENTIFICAÇÃO */
+        .id-section {
+            background: white;
+            border-radius: 48px;
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+        }
+
+        .id-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .id-lista {
+            background: #f6fbfe;
+            border-radius: 32px;
+            padding: 2rem;
+        }
+
+        .id-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .id-icone {
+            background: var(--primary-dark);
+            color: white;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .exemplo-rotulo {
+            background: #e4f1f7;
+            border-radius: 32px;
+            padding: 2rem;
+        }
+
+        .rotulo-card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.8rem;
+            border-left: 10px solid var(--success);
+            font-family: 'Courier New', monospace;
+        }
+
+        .sitio-tag {
+            background: #c9e9f0;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        /* GUIA DE BOLSO APROFUNDADO */
+        .guia-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .guia-card {
+            background: white;
+            border-radius: 32px;
+            padding: 1.8rem;
+            border-left: 10px solid;
+            box-shadow: 0 15px 25px -10px rgba(0,60,80,0.15);
+        }
+
+        .guia-card.sepse-card {
+            border-left-color: var(--sepse);
+        }
+
+        .guia-card.neutro-card {
+            border-left-color: var(--neutro);
+        }
+
+        .guia-card.id-card {
+            border-left-color: var(--primary-dark);
+        }
+
+        .guia-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .guia-card ul {
+            list-style: none;
+        }
+
+        .guia-card li {
+            margin: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .guia-card i {
+            width: 24px;
+        }
+
+        .sepse-card i {
+            color: var(--sepse);
+        }
+
+        .neutro-card i {
+            color: var(--neutro);
+        }
+
+        .id-card i {
+            color: var(--primary-dark);
+        }
+
+        /* INDICADORES */
+        .indicadores-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .indicador-card {
+            background: white;
+            border-radius: 28px;
+            padding: 1.8rem;
+            text-align: center;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.02);
+            border: 1px solid #e1f0f5;
+        }
+
+        .indicador-card i {
+            font-size: 2.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.8rem;
+        }
+
+        /* QUIZ FUNCIONAL */
+        .quiz-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem;
+            margin: 2rem 0;
+        }
+
+        .quiz-item {
+            background: #f2faff;
+            border-radius: 28px;
+            padding: 1.5rem;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: 0.2s;
+        }
+
+        .quiz-item:hover {
+            border-color: var(--sepse);
+        }
+
+        .quiz-pergunta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .quiz-resposta {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 28px;
+            border-left: 6px solid var(--sepse);
+        }
+
+        .quiz-item.ativo .quiz-resposta {
+            display: block;
+        }
+
+        /* CHECKLIST PARA IMPRESSÃO - CORREÇÃO */
+        .checklist-container {
+            background: white;
+            border-radius: 48px;
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+            text-align: center;
+        }
+
+        .checklist-box {
+            background: #f2fafd;
+            border-radius: 36px;
+            padding: 2rem;
+            text-align: left;
+            border: 2px dashed var(--sepse);
+        }
+
+        .checklist-box pre {
+            font-family: inherit;
+            white-space: pre-wrap;
+        }
+
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #checklist-print, #checklist-print * {
+                visibility: visible;
+            }
+            #checklist-print {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                padding: 2rem;
+                background: white;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #306577;
+        }
+
+        @media (max-width: 1000px) {
+            .protocolos-grid, .tecnica-grid, .indicadores-grid, .quiz-grid, .id-grid, .guia-grid {
+                grid-template-columns: 1fr;
+            }
+            .triplo-card {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar no-print">
+        <div class="logo"><i class="fas fa-hospital"></i> Bem-T Care · Hemocultura</div>
+        <div class="nav-links">
+            <a href="#sepse">Sepse</a>
+            <a href="#neutropenia">Neutropenia</a>
+            <a href="#tecnica">Técnica</a>
+            <a href="#identificacao">Identificação</a>
+            <a href="#indicadores">Indicadores</a>
+        </div>
+    </div>
+
+    <main class="container">
+        <!-- Hero -->
+        <div class="hero no-print">
+            <span class="badge-protocolo"><i class="fas fa-file-alt"></i> Protocolo Institucional PRO.INS.01</span>
+            <h1><i class="fas fa-flask"></i> Coleta de Hemoculturas</h1>
+            <p style="font-size: 1.8rem; font-weight: 300; color: #1f6075;">Sepse · Neutropenia Febril · ILAS</p>
+            <div class="hero-badges">
+                <span class="badge"><i class="far fa-clock"></i> 90 min</span>
+                <span class="badge"><i class="fas fa-user-nurse"></i> Enfermeiros e técnicos</span>
+                <span class="badge"><i class="fas fa-chart-line"></i> NIRAS · Indicadores</span>
+            </div>
+        </div>
+
+        <!-- PROTOCOLOS: SEPSE E NEUTROPENIA -->
+        <div class="protocolos-grid" id="sepse">
+            <!-- Card Sepse -->
+            <div class="card-sepse">
+                <div class="card-header">
+                    <i class="fas fa-bolt"></i>
+                    <h2>Sepse · ILAS</h2>
+                </div>
+                
+                <div class="info-block">
+                    <div class="info-linha"><i class="fas fa-check-circle"></i> <strong>Disfunção orgânica</strong> ou ≥2 SRIS</div>
+                    <div class="info-linha"><i class="fas fa-check-circle"></i> <strong>Foco infeccioso</strong> suspeito/confirmado</div>
+                    <div class="info-linha"><i class="fas fa-exclamation-triangle"></i> <strong>Sepse provável:</strong> foco + disfunção OU SRIS + fatores de risco</div>
+                    <div class="info-linha"><i class="fas fa-question-circle"></i> <strong>Sepse possível:</strong> foco + SRIS sem disfunção/sem fatores de risco (investigar 3h)</div>
+                </div>
+
+                <div class="amostra-destaque">
+                    <span class="amostra-numero">2-3</span>
+                    <div><strong>Amostras de sítios diferentes</strong><br>Braço D, braço E, MSE · Coletar <span style="background: #fee9e6; padding: 0.2rem 0.8rem; border-radius: 60px;">antes do antibiótico</span></div>
+                </div>
+
+                <div class="triplo-card">
+                    <div class="micro-card"><i class="fas fa-droplet"></i> <strong>Lactato</strong><br>na 1ª hora</div>
+                    <div class="micro-card"><i class="fas fa-syringe"></i> <strong>ATB</strong><br>1ª hora</div>
+                    <div class="micro-card"><i class="fas fa-water"></i> <strong>Cristaloides</strong><br>30 mL/kg se hipotensão</div>
+                </div>
+
+                <div class="antimicrobiano-box">
+                    <i class="fas fa-capsules"></i> <strong>Antimicrobianos:</strong> Cefepime 2g 8/8h | Pip/Tazo 4,5g 6/6h | Meropenem 1g 8/8h
+                </div>
+
+                <p style="margin-top: 1rem; background: var(--sepse-light); padding: 0.8rem; border-radius: 50px; text-align: center;">
+                    <i class="fas fa-clock"></i> <strong>Pacote da 1ª hora:</strong> lactato, hemoculturas, ATB, volume
+                </p>
+            </div>
+
+            <!-- Card Neutropenia -->
+            <div class="card-neutro" id="neutropenia">
+                <div class="card-header">
+                    <i class="fas fa-biohazard"></i>
+                    <h2>Neutropenia Febril</h2>
+                </div>
+
+                <div class="info-block">
+                    <div class="info-linha"><i class="fas fa-thermometer-half"></i> <strong>Febre:</strong> ≥37,8°C (1h) ou ≥38,3°C única</div>
+                    <div class="info-linha"><i class="fas fa-dna"></i> <strong>Neutrófilos:</strong> < 500/mm³ ou < 1000/mm³ com previsão de queda</div>
+                    <div class="info-linha"><i class="fas fa-check-circle"></i> Critérios SIRS + neutropenia já configuram quadro</div>
+                </div>
+
+                <div class="amostra-destaque">
+                    <span class="amostra-numero">3</span>
+                    <div><strong>Amostras obrigatórias</strong><br>Três sítios diferentes (BD, BE, MSE) · <span class="sitio-tag">Identificar 1/3, 2/3, 3/3</span></div>
+                </div>
+
+                <div class="triplo-card">
+                    <div class="micro-card"><i class="fas fa-vial"></i> <strong>Hemoculturas</strong><br>3 sítios</div>
+                    <div class="micro-card"><i class="fas fa-lungs"></i> <strong>Gasometria</strong><br>+ lactato</div>
+                    <div class="micro-card"><i class="fas fa-capsules"></i> <strong>ATB empírico</strong><br>1ª hora</div>
+                </div>
+
+                <div class="antimicrobiano-box">
+                    <i class="fas fa-capsules"></i> <strong>Esquema empírico:</strong> Cefepime 2g 8/8h | Pip/Tazo 4,5g 6/6h | Meropenem 1g 8/8h<br>
+                    <span style="color: var(--warning);"><i class="fas fa-exclamation-circle"></i> Se infecção de cateter: Vancomicina (ataque 25-30 mg/kg)</span><br>
+                    <span style="font-size:0.9rem;">MRSA/pele: Linezolida 600mg 12/12h | VRE: Linezolida</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- TÉCNICA DE COLETA EM 4 BLOCOS -->
+        <h2 class="tecnica-titulo no-print" id="tecnica"><i class="fas fa-list-ol"></i> Técnica de coleta · Passo a passo</h2>
+
+        <div class="tecnica-grid no-print">
+            <!-- Bloco 1 -->
+            <div class="tecnica-bloco">
+                <div class="bloco-numero">1</div>
+                <div class="bloco-conteudo">
+                    <p><i class="fas fa-hand-holding-heart"></i> Higienizar mãos + identificar paciente</p>
+                    <p><i class="fas fa-spray-can"></i> Desinfetar borracha dos frascos (álcool 70% 15s + secar)</p>
+                    <p><i class="fas fa-hand"></i> Escolher veia, garrotear, desgarrotear</p>
+                </div>
+            </div>
+            
+            <!-- Bloco 2 -->
+            <div class="tecnica-bloco">
+                <div class="bloco-numero">2</div>
+                <div class="bloco-conteudo">
+                    <p><i class="fas fa-spray-can-sparkles"></i> <strong>Antissepsia pele:</strong> clorexidina alcoólica 30s</p>
+                    <p><span class="destaque-secagem"><i class="fas fa-hourglass-half"></i> <strong>SECAR 1-2 min</strong> (não assoprar!)</span></p>
+                    <p><i class="fas fa-syringe"></i> Coletar <strong>8-10 mL por frasco</strong></p>
+                </div>
+            </div>
+            
+            <!-- Bloco 3 -->
+            <div class="tecnica-bloco">
+                <div class="bloco-numero">3</div>
+                <div class="bloco-conteudo">
+                    <p><i class="fas fa-syringe"></i> <strong>Inoculação na ordem:</strong></p>
+                    <p class="ordem-lista">🟢 Seringa: 1º anaeróbio → 2º aeróbio</p>
+                    <p class="ordem-lista">🔵 Butterfly: 1º aeróbio → 2º anaeróbio</p>
+                    <p><i class="fas fa-hand-sparkles"></i> Homogeneizar suavemente (inversão 5-8x)</p>
+                    <p><i class="fas fa-tag"></i> Identificar (sítio, hora, coletor)</p>
+                </div>
+            </div>
+            
+            <!-- Bloco 4 -->
+            <div class="tecnica-bloco">
+                <div class="bloco-numero">4</div>
+                <div class="bloco-conteudo">
+                    <p><i class="fas fa-truck"></i> Transporte <strong>imediato</strong></p>
+                    <p><i class="fas fa-temperature-high"></i> Temperatura ambiente</p>
+                    <p><i class="fas fa-snowflake"></i> <span style="color: #c44536; font-weight:600;">NUNCA REFRIGERAR</span></p>
+                    <p style="margin-top:0.8rem; background:#f0f7fa; padding:0.5rem; border-radius:20px; text-align:center;">⏱️ <strong>Máximo 2h</strong> para processamento</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alerta de volume -->
+        <div class="alerta-volume no-print">
+            <i class="fas fa-exclamation-triangle" style="font-size: 2rem; float: left; margin-right: 20px;"></i>
+            <strong>⚠️ Volume insuficiente?</strong> Se o volume total for < 16 mL (para 2 frascos), encher <strong>apenas o frasco AERÓBIO</strong> com 8-10 mL e enviar só ele. <strong>Nunca dividir pouco sangue!</strong>
+        </div>
+
+        <!-- IDENTIFICAÇÃO DOS FRASCOS -->
+        <div class="id-section no-print" id="identificacao">
+            <h2 style="font-size: 2.2rem; border-left: 12px solid var(--primary-dark); padding-left: 1.5rem;"><i class="fas fa-tags"></i> Identificação dos frascos</h2>
+            <div style="background: var(--primary-dark); color: white; display: inline-block; padding: 0.5rem 2.2rem; border-radius: 40px; font-weight: 600; margin: 1.5rem 0;">
+                <i class="fas fa-user-shield"></i> Responsabilidade exclusiva do enfermeiro
+            </div>
+
+            <div class="id-grid">
+                <div class="id-lista">
+                    <h3>O que deve conter no rótulo?</h3>
+                    <div class="id-item"><div class="id-icone"><i class="fas fa-id-card"></i></div><div><strong>Nome completo + prontuário</strong><br><span style="color: #2e5770;">Conferir pulseira</span></div></div>
+                    <div class="id-item"><div class="id-icone"><i class="fas fa-calendar-check"></i></div><div><strong>Data e hora exata</strong><br><span style="color: #2e5770;">Minutos (ex: 15:30)</span></div></div>
+                    <div class="id-item"><div class="id-icone"><i class="fas fa-map-pin"></i></div><div><strong>Sítio de punção (obrigatório)</strong><br><span style="color: #2e5770;">Braço D, MSE, etc. Para neutropenia: 1/3, 2/3, 3/3</span></div></div>
+                    <div class="id-item"><div class="id-icone"><i class="fas fa-signature"></i></div><div><strong>Identificação do coletor</strong><br><span style="color: #2e5770;">Nome e registro COREN</span></div></div>
+                    <div class="id-item"><div class="id-icone"><i class="fas fa-barcode"></i></div><div><strong>Não cobrir código de barras</strong><br><span style="color: #2e5770;">Leitura automatizada</span></div></div>
+                    <div class="id-item"><div class="id-icone"><i class="fas fa-eye"></i></div><div><strong>Não tampar sensor óptico</strong><br><span style="color: #2e5770;">Fundo do frasco</span></div></div>
+                </div>
+
+                <div class="exemplo-rotulo">
+                    <h4><i class="fas fa-pen-fancy"></i> Exemplo (neutropenia: 3 sítios)</h4>
+                    <div class="rotulo-card">
+                        <p><strong>Maria Silva – 12345</strong></p>
+                        <p>24/02/2026 – 15:30</p>
+                        <p><span class="sitio-tag">Sítio: MSE · 1/3</span></p>
+                        <p>Coletor: Enf. João R. COREN 123456</p>
+                        <p><i class="fas fa-check-circle" style="color:green;"></i> Código visível · Sensor livre</p>
+                    </div>
+                    <p style="margin-top: 1rem;">Frascos dos outros sítios: "2/3" (BD) e "3/3" (BE).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- GUIA DE BOLSO APROFUNDADO -->
+        <div style="background: white; border-radius: 48px; padding: 2.5rem; margin: 2.5rem 0;" class="no-print">
+            <h2 style="font-size: 2.2rem; border-left: 12px solid var(--primary-dark); padding-left: 1.5rem;"><i class="fas fa-bookmark"></i> Guia de bolso · Comparativo completo</h2>
+            
+            <div class="guia-grid">
+                <div class="guia-card sepse-card">
+                    <h3><i class="fas fa-bolt"></i> Sepse</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>Amostras:</strong> 2-3 sítios diferentes</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Coleta:</strong> Antes do ATB</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Lactato:</strong> 1ª hora</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>ATB:</strong> 1ª hora</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Cristaloides:</strong> 30 mL/kg se hipotensão</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Reavaliação:</strong> Diária, suspender se descartado</li>
+                    </ul>
+                </div>
+                
+                <div class="guia-card neutro-card">
+                    <h3><i class="fas fa-biohazard"></i> Neutropenia Febril</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>Amostras:</strong> 3 sítios diferentes (1/3,2/3,3/3)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Definição:</strong> Neutrófilos <500 ou febre ≥37,8°C</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Exames:</strong> Hemoculturas, gasometria, lactato</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>ATB empírico:</strong> Cefepime/Pip/Tazo/Meropenem</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>+ Vancomicina:</strong> Se infecção de cateter</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>MRSA/VRE:</strong> Linezolida 600mg 12/12h</li>
+                    </ul>
+                </div>
+                
+                <div class="guia-card id-card">
+                    <h3><i class="fas fa-tag"></i> Identificação</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Nome completo + prontuário</li>
+                        <li><i class="fas fa-check-circle"></i> Data/hora com minutos</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>SÍTIO + numeração (1/3,2/3,3/3)</strong></li>
+                        <li><i class="fas fa-check-circle"></i> Coletor (nome + COREN)</li>
+                        <li><i class="fas fa-check-circle"></i> Não cobrir código de barras</li>
+                        <li><i class="fas fa-check-circle"></i> Sensor óptico livre</li>
+                        <li><i class="fas fa-check-circle"></i> Etiqueta no corpo do frasco</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- INDICADORES -->
+        <div style="background: white; border-radius: 48px; padding: 2.5rem; margin: 2.5rem 0;" class="no-print" id="indicadores">
+            <h2 style="font-size: 2.2rem; border-left: 12px solid var(--primary-dark); padding-left: 1.5rem;"><i class="fas fa-chart-line"></i> Indicadores · NIRAS</h2>
+            <div class="indicadores-grid">
+                <div class="indicador-card"><i class="fas fa-clock"></i> <strong>Hemograma na 1ª hora</strong><br>Nº com coleta / total neutropênicos</div>
+                <div class="indicador-card"><i class="fas fa-syringe"></i> <strong>Hemocultura antes do ATB</strong><br>Nº que coletou antes / total</div>
+                <div class="indicador-card"><i class="fas fa-capsules"></i> <strong>ATB adequado na 1ª hora</strong><br>Nº com ATB espectro adequado / total</div>
+                <div class="indicador-card"><i class="fas fa-heartbeat"></i> <strong>Óbito</strong><br>Nº óbitos / total neutropênicos</div>
+            </div>
+            <p style="background: #dcf0f5; border-radius: 50px; padding: 1rem 2rem; margin-top: 1.5rem;">
+                <i class="fas fa-chart-pie"></i> Gerenciamento diário: enfermeira do NIRAS · Apresentação mensal
+            </p>
+        </div>
+
+        <!-- QUIZ FUNCIONAL -->
+        <div style="background: white; border-radius: 48px; padding: 2.5rem; margin: 2.5rem 0;" class="no-print">
+            <h2 style="font-size: 2.2rem; border-left: 12px solid var(--primary-dark); padding-left: 1.5rem;"><i class="fas fa-puzzle-piece"></i> Quiz rápido (clique para ver a resposta)</h2>
+            
+            <div class="quiz-grid">
+                <div class="quiz-item" onclick="toggleQuiz(this)">
+                    <div class="quiz-pergunta">
+                        <span>🔹 Quantas amostras na neutropenia?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="quiz-resposta">3 amostras de sítios diferentes (identificar 1/3, 2/3, 3/3).</div>
+                </div>
+                
+                <div class="quiz-item" onclick="toggleQuiz(this)">
+                    <div class="quiz-pergunta">
+                        <span>🔹 O que é sepse provável?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="quiz-resposta">Foco infeccioso + disfunção OU SRIS + fatores de risco (imunossupressão, comorbidades, idade avançada).</div>
+                </div>
+                
+                <div class="quiz-item" onclick="toggleQuiz(this)">
+                    <div class="quiz-pergunta">
+                        <span>🔹 Volume insuficiente: o que fazer?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="quiz-resposta">Encher só o frasco AERÓBIO com 8-10 mL e enviar apenas ele. Nunca dividir pouco sangue!</div>
+                </div>
+                
+                <div class="quiz-item" onclick="toggleQuiz(this)">
+                    <div class="quiz-pergunta">
+                        <span>🔹 Quando usar vancomicina na neutropenia?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="quiz-resposta">Se infecção de cateter, bacteremia, MRSA, infecção de pele ou mucosite grau II. Dose de ataque: 25-30 mg/kg.</div>
+                </div>
+                
+                <div class="quiz-item" onclick="toggleQuiz(this)">
+                    <div class="quiz-pergunta">
+                        <span>🔹 Qual o tempo de secagem da antissepsia?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="quiz-resposta">1 a 2 minutos. Não assoprar, não tocar. O álcool mata ao secar.</div>
+                </div>
+                
+                <div class="quiz-item" onclick="toggleQuiz(this)">
+                    <div class="quiz-pergunta">
+                        <span>🔹 O que é sepse possível?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="quiz-resposta">Foco infeccioso + SRIS sem disfunção e sem fatores de risco. Investigar por até 3h, postergar ATB.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHECKLIST IMPRIMÍVEL - CORRIGIDO -->
+        <div class="checklist-container" id="checklist-print">
+            <h2><i class="fas fa-clipboard-list"></i> Checklist de coleta</h2>
+            <button class="badge no-print" onclick="imprimirChecklist()" style="background: var(--primary-dark); color: white; border: none; padding: 0.8rem 2.5rem; font-size: 1.1rem; margin: 1.5rem 0; cursor: pointer;">
+                <i class="fas fa-print"></i> Imprimir checklist
+            </button>
+            <div class="checklist-box">
+                <pre style="font-family: inherit; white-space: pre-wrap;">
+▢ Mãos higienizadas, paciente identificado (pulseira)
+▢ Frascos: desinfecção da tampa (álcool 70% 15s + secagem)
+▢ Escolha do sítio: 2 (sepse) ou 3 (neutropenia) locais diferentes
+▢ Antissepsia da pele: clorexidina alcoólica 30s + secagem TOTAL (1-2 min)
+▢ Coleta de lactato (sepse) / gasometria (neutropenia)
+▢ Volume: 8-10 mL por frasco (se insuficiente, encher só aeróbio)
+▢ Inoculação na ordem correta (seringa: 1º anaeróbio; butterfly: 1º aeróbio)
+▢ Homogeneização suave (inversão 5-8x)
+▢ Identificação completa: NOME, DATA/HORA, SÍTIO (1/3,2/3,3/3), COLETOR
+▢ Código de barras e sensor óptico visíveis (não cobrir!)
+▢ Transporte imediato em temperatura ambiente (nunca refrigerar)
+                </pre>
+            </div>
+        </div>
+
+        <footer class="no-print">
+            <p>Protocolo Institucional PRO.INS.01 · Hospital Bem-T Care · NIRAS · Qualidade</p>
+            <p>© 2026 · Capacitação para enfermeiros e técnicos · Versão 2.0</p>
+        </footer>
+    </main>
+
+    <script>
+        // Função para toggle do quiz
+        function toggleQuiz(element) {
+            element.classList.toggle('ativo');
+        }
+        
+        // Função para imprimir apenas o checklist
+        function imprimirChecklist() {
+            window.print();
+        }
+    </script>
+</body>
+</html>
