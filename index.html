@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hemocultura · Sepse vs Neutropenia · Bem-T Care</title>
+    <title>Hemocultura · Protocolos Bem-T Care</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google Fonts -->
@@ -129,7 +129,42 @@
             margin-bottom: 1.5rem;
         }
 
-        /* CARDS PRINCIPAIS - SEPSE E NEUTROPENIA */
+        /* FLUXOGRAMA DE TRIAGEM */
+        .fluxograma-box {
+            background: white;
+            border-radius: 48px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid var(--sepse);
+        }
+
+        .fluxo-item {
+            background: #f8fcff;
+            border-radius: 28px;
+            padding: 1rem 1.5rem;
+            margin: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-left: 8px solid var(--sepse);
+        }
+
+        .fluxo-item i {
+            color: var(--sepse);
+            font-size: 1.3rem;
+            width: 28px;
+        }
+
+        .fluxo-destaque {
+            background: var(--sepse-light);
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem;
+            display: inline-block;
+            font-weight: 600;
+            margin: 0.5rem 0;
+        }
+
+        /* CARDS PRINCIPAIS */
         .protocolos-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -287,7 +322,16 @@
             border-color: var(--neutro);
         }
 
-        /* TÉCNICA DE COLETA - 4 BLOCOS */
+        .volume-detalhe {
+            background: #fff3bf;
+            border-radius: 40px;
+            padding: 0.5rem 1.2rem;
+            display: inline-block;
+            margin-top: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* TÉCNICA DE COLETA */
         .tecnica-titulo {
             font-size: 2.2rem;
             font-family: 'Outfit', sans-serif;
@@ -437,7 +481,7 @@
             font-weight: 600;
         }
 
-        /* GUIA DE BOLSO APROFUNDADO */
+        /* GUIA DE BOLSO */
         .guia-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -523,7 +567,7 @@
             margin-bottom: 0.8rem;
         }
 
-        /* QUIZ FUNCIONAL */
+        /* QUIZ */
         .quiz-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -564,7 +608,7 @@
             display: block;
         }
 
-        /* CHECKLIST PARA IMPRESSÃO - CORREÇÃO */
+        /* CHECKLIST */
         .checklist-container {
             background: white;
             border-radius: 48px;
@@ -624,20 +668,20 @@
 </head>
 <body>
     <div class="navbar no-print">
-        <div class="logo"><i class="fas fa-hospital"></i> Bem-T Care · Hemocultura</div>
+        <div class="logo"><i class="fas fa-hospital"></i> Bem-T Care · Protocolos</div>
         <div class="nav-links">
+            <a href="#fluxograma">Fluxograma</a>
             <a href="#sepse">Sepse</a>
             <a href="#neutropenia">Neutropenia</a>
             <a href="#tecnica">Técnica</a>
             <a href="#identificacao">Identificação</a>
-            <a href="#indicadores">Indicadores</a>
         </div>
     </div>
 
     <main class="container">
         <!-- Hero -->
         <div class="hero no-print">
-            <span class="badge-protocolo"><i class="fas fa-file-alt"></i> Protocolo Institucional PRO.INS.01</span>
+            <span class="badge-protocolo"><i class="fas fa-file-alt"></i> Protocolos PRO.INS.01 e PRO.INS.02</span>
             <h1><i class="fas fa-flask"></i> Coleta de Hemoculturas</h1>
             <p style="font-size: 1.8rem; font-weight: 300; color: #1f6075;">Sepse · Neutropenia Febril · ILAS</p>
             <div class="hero-badges">
@@ -647,43 +691,61 @@
             </div>
         </div>
 
+        <!-- FLUXOGRAMA DE TRIAGEM (ILAS) -->
+        <div class="fluxograma-box" id="fluxograma">
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem;"><i class="fas fa-sitemap"></i> Fluxograma de Triagem · Sepse</h2>
+            
+            <div class="fluxo-item"><i class="fas fa-question-circle"></i> <strong>Paciente apresenta disfunção orgânica ou ≥2 SRIS?</strong> → Sim → Acionar equipe médica</div>
+            <div class="fluxo-item"><i class="fas fa-question-circle"></i> <strong>Há foco infeccioso suspeito/confirmado?</strong> → Sim → Prosseguir</div>
+            <div class="fluxo-item"><i class="fas fa-heartbeat"></i> <strong>Disfunção orgânica presente?</strong> (PAS <90, alteração consciência, StO2 <90%, diurese <0,5 mL/kg/h, lactato >2x, creatinina >2, etc.)</div>
+            
+            <div class="fluxo-destaque">🔵 Sepse provável: foco infeccioso + disfunção OU SRIS + fatores de risco (imunossupressão, comorbidades, idade avançada)</div>
+            <div class="fluxo-destaque" style="background: #fff3bf;">🟡 Sepse possível: foco infeccioso + SRIS sem disfunção e sem fatores de risco → investigar (máx 3h) e postergar ATB</div>
+
+            <div class="fluxo-item"><i class="fas fa-exclamation-triangle" style="color: var(--warning);"></i> <strong>Atenção:</strong> Se confirmado sepse → seguir pacote 1ª hora. Se descartado → suspender ATB imediatamente.</div>
+        </div>
+
         <!-- PROTOCOLOS: SEPSE E NEUTROPENIA -->
-        <div class="protocolos-grid" id="sepse">
-            <!-- Card Sepse -->
-            <div class="card-sepse">
+        <div class="protocolos-grid">
+            <!-- Card Sepse (conforme Protocolo de Prevenção de Sepse) -->
+            <div class="card-sepse" id="sepse">
                 <div class="card-header">
                     <i class="fas fa-bolt"></i>
                     <h2>Sepse · ILAS</h2>
                 </div>
                 
                 <div class="info-block">
-                    <div class="info-linha"><i class="fas fa-check-circle"></i> <strong>Disfunção orgânica</strong> ou ≥2 SRIS</div>
+                    <div class="info-linha"><i class="fas fa-check-circle"></i> <strong>Disfunção orgânica</strong> (PAS <90, lactato >2x, creatinina >2, etc.)</div>
                     <div class="info-linha"><i class="fas fa-check-circle"></i> <strong>Foco infeccioso</strong> suspeito/confirmado</div>
                     <div class="info-linha"><i class="fas fa-exclamation-triangle"></i> <strong>Sepse provável:</strong> foco + disfunção OU SRIS + fatores de risco</div>
                     <div class="info-linha"><i class="fas fa-question-circle"></i> <strong>Sepse possível:</strong> foco + SRIS sem disfunção/sem fatores de risco (investigar 3h)</div>
                 </div>
 
                 <div class="amostra-destaque">
-                    <span class="amostra-numero">2-3</span>
-                    <div><strong>Amostras de sítios diferentes</strong><br>Braço D, braço E, MSE · Coletar <span style="background: #fee9e6; padding: 0.2rem 0.8rem; border-radius: 60px;">antes do antibiótico</span></div>
+                    <span class="amostra-numero">2</span>
+                    <div>
+                        <strong>2 sítios diferentes (obrigatório)</strong><br>
+                        Braço D e braço E (ou MSE) · <span style="background: #fee9e6; padding: 0.2rem 0.8rem; border-radius: 60px;">antes do antibiótico</span>
+                        <div class="volume-detalhe"><i class="fas fa-syringe"></i> 20 mL por sítio = 40 mL totais (10 mL/frasco)</div>
+                    </div>
                 </div>
 
                 <div class="triplo-card">
-                    <div class="micro-card"><i class="fas fa-droplet"></i> <strong>Lactato</strong><br>na 1ª hora</div>
+                    <div class="micro-card"><i class="fas fa-droplet"></i> <strong>Lactato</strong><br>1ª hora + 2ª coleta 2-4h</div>
                     <div class="micro-card"><i class="fas fa-syringe"></i> <strong>ATB</strong><br>1ª hora</div>
                     <div class="micro-card"><i class="fas fa-water"></i> <strong>Cristaloides</strong><br>30 mL/kg se hipotensão</div>
                 </div>
 
                 <div class="antimicrobiano-box">
-                    <i class="fas fa-capsules"></i> <strong>Antimicrobianos:</strong> Cefepime 2g 8/8h | Pip/Tazo 4,5g 6/6h | Meropenem 1g 8/8h
+                    <i class="fas fa-capsules"></i> <strong>Antimicrobianos empíricos:</strong> Cefepime 2g 8/8h | Pip/Tazo 4,5g 6/6h | Meropenem 1g 8/8h
                 </div>
 
                 <p style="margin-top: 1rem; background: var(--sepse-light); padding: 0.8rem; border-radius: 50px; text-align: center;">
-                    <i class="fas fa-clock"></i> <strong>Pacote da 1ª hora:</strong> lactato, hemoculturas, ATB, volume
+                    <i class="fas fa-clock"></i> <strong>Pacote da 1ª hora:</strong> lactato, hemoculturas (2 sítios), ATB, volume, vasopressor se necessário
                 </p>
             </div>
 
-            <!-- Card Neutropenia -->
+            <!-- Card Neutropenia (conforme Protocolo de Neutropenia) -->
             <div class="card-neutro" id="neutropenia">
                 <div class="card-header">
                     <i class="fas fa-biohazard"></i>
@@ -691,14 +753,18 @@
                 </div>
 
                 <div class="info-block">
-                    <div class="info-linha"><i class="fas fa-thermometer-half"></i> <strong>Febre:</strong> ≥37,8°C (1h) ou ≥38,3°C única</div>
+                    <div class="info-linha"><i class="fas fa-thermometer-half"></i> <strong>Febre:</strong> ≥37,8°C por 1h ou ≥38,3°C única</div>
                     <div class="info-linha"><i class="fas fa-dna"></i> <strong>Neutrófilos:</strong> < 500/mm³ ou < 1000/mm³ com previsão de queda</div>
                     <div class="info-linha"><i class="fas fa-check-circle"></i> Critérios SIRS + neutropenia já configuram quadro</div>
                 </div>
 
                 <div class="amostra-destaque">
                     <span class="amostra-numero">3</span>
-                    <div><strong>Amostras obrigatórias</strong><br>Três sítios diferentes (BD, BE, MSE) · <span class="sitio-tag">Identificar 1/3, 2/3, 3/3</span></div>
+                    <div>
+                        <strong>3 sítios diferentes (obrigatório)</strong><br>
+                        BD, BE, MSE · <span class="sitio-tag">Identificar 1/3, 2/3, 3/3</span>
+                        <div class="volume-detalhe"><i class="fas fa-syringe"></i> 20 mL por sítio = 60 mL totais (10 mL/frasco)</div>
+                    </div>
                 </div>
 
                 <div class="triplo-card">
@@ -709,58 +775,20 @@
 
                 <div class="antimicrobiano-box">
                     <i class="fas fa-capsules"></i> <strong>Esquema empírico:</strong> Cefepime 2g 8/8h | Pip/Tazo 4,5g 6/6h | Meropenem 1g 8/8h<br>
-                    <span style="color: var(--warning);"><i class="fas fa-exclamation-circle"></i> Se infecção de cateter: Vancomicina (ataque 25-30 mg/kg)</span><br>
-                    <span style="font-size:0.9rem;">MRSA/pele: Linezolida 600mg 12/12h | VRE: Linezolida</span>
+                    <span style="color: var(--warning);"><i class="fas fa-exclamation-circle"></i> Se infecção de cateter/bacteremia: Vancomicina (ataque 25-30 mg/kg, manutenção 15 mg/kg 12/12h)</span><br>
+                    <span style="font-size:0.9rem;">MRSA/pele/mucosite: Linezolida 600mg 12/12h | VRE: Linezolida</span>
                 </div>
             </div>
         </div>
 
-        <!-- TÉCNICA DE COLETA EM 4 BLOCOS -->
+        <!-- TÉCNICA DE COLETA -->
         <h2 class="tecnica-titulo no-print" id="tecnica"><i class="fas fa-list-ol"></i> Técnica de coleta · Passo a passo</h2>
 
         <div class="tecnica-grid no-print">
-            <!-- Bloco 1 -->
-            <div class="tecnica-bloco">
-                <div class="bloco-numero">1</div>
-                <div class="bloco-conteudo">
-                    <p><i class="fas fa-hand-holding-heart"></i> Higienizar mãos + identificar paciente</p>
-                    <p><i class="fas fa-spray-can"></i> Desinfetar borracha dos frascos (álcool 70% 15s + secar)</p>
-                    <p><i class="fas fa-hand"></i> Escolher veia, garrotear, desgarrotear</p>
-                </div>
-            </div>
-            
-            <!-- Bloco 2 -->
-            <div class="tecnica-bloco">
-                <div class="bloco-numero">2</div>
-                <div class="bloco-conteudo">
-                    <p><i class="fas fa-spray-can-sparkles"></i> <strong>Antissepsia pele:</strong> clorexidina alcoólica 30s</p>
-                    <p><span class="destaque-secagem"><i class="fas fa-hourglass-half"></i> <strong>SECAR 1-2 min</strong> (não assoprar!)</span></p>
-                    <p><i class="fas fa-syringe"></i> Coletar <strong>8-10 mL por frasco</strong></p>
-                </div>
-            </div>
-            
-            <!-- Bloco 3 -->
-            <div class="tecnica-bloco">
-                <div class="bloco-numero">3</div>
-                <div class="bloco-conteudo">
-                    <p><i class="fas fa-syringe"></i> <strong>Inoculação na ordem:</strong></p>
-                    <p class="ordem-lista">🟢 Seringa: 1º anaeróbio → 2º aeróbio</p>
-                    <p class="ordem-lista">🔵 Butterfly: 1º aeróbio → 2º anaeróbio</p>
-                    <p><i class="fas fa-hand-sparkles"></i> Homogeneizar suavemente (inversão 5-8x)</p>
-                    <p><i class="fas fa-tag"></i> Identificar (sítio, hora, coletor)</p>
-                </div>
-            </div>
-            
-            <!-- Bloco 4 -->
-            <div class="tecnica-bloco">
-                <div class="bloco-numero">4</div>
-                <div class="bloco-conteudo">
-                    <p><i class="fas fa-truck"></i> Transporte <strong>imediato</strong></p>
-                    <p><i class="fas fa-temperature-high"></i> Temperatura ambiente</p>
-                    <p><i class="fas fa-snowflake"></i> <span style="color: #c44536; font-weight:600;">NUNCA REFRIGERAR</span></p>
-                    <p style="margin-top:0.8rem; background:#f0f7fa; padding:0.5rem; border-radius:20px; text-align:center;">⏱️ <strong>Máximo 2h</strong> para processamento</p>
-                </div>
-            </div>
+            <div class="tecnica-bloco"><div class="bloco-numero">1</div><div class="bloco-conteudo"><p><i class="fas fa-hand-holding-heart"></i> Higienizar mãos + identificar paciente</p><p><i class="fas fa-spray-can"></i> Desinfetar borracha dos frascos (álcool 70% 15s + secar)</p><p><i class="fas fa-hand"></i> Escolher veia, garrotear, desgarrotear</p></div></div>
+            <div class="tecnica-bloco"><div class="bloco-numero">2</div><div class="bloco-conteudo"><p><i class="fas fa-spray-can-sparkles"></i> <strong>Antissepsia pele:</strong> clorexidina alcoólica 30s</p><p><span class="destaque-secagem"><i class="fas fa-hourglass-half"></i> <strong>SECAR 1-2 min</strong> (não assoprar!)</span></p><p><i class="fas fa-syringe"></i> Coletar <strong>10 mL por frasco</strong> (20 mL/sítio)</p></div></div>
+            <div class="tecnica-bloco"><div class="bloco-numero">3</div><div class="bloco-conteudo"><p><i class="fas fa-syringe"></i> <strong>Inoculação na ordem:</strong></p><p class="ordem-lista">🟢 Seringa: 1º anaeróbio → 2º aeróbio</p><p class="ordem-lista">🔵 Butterfly: 1º aeróbio → 2º anaeróbio</p><p><i class="fas fa-hand-sparkles"></i> Homogeneizar suavemente (inversão 5-8x)</p><p><i class="fas fa-tag"></i> Identificar (sítio, hora, coletor)</p></div></div>
+            <div class="tecnica-bloco"><div class="bloco-numero">4</div><div class="bloco-conteudo"><p><i class="fas fa-truck"></i> Transporte <strong>imediato</strong></p><p><i class="fas fa-temperature-high"></i> Temperatura ambiente</p><p><i class="fas fa-snowflake"></i> <span style="color: #c44536; font-weight:600;">NUNCA REFRIGERAR</span></p><p style="margin-top:0.8rem; background:#f0f7fa; padding:0.5rem; border-radius:20px;">⏱️ <strong>Máximo 2h</strong> para processamento</p></div></div>
         </div>
 
         <!-- Alerta de volume -->
@@ -801,120 +829,72 @@
             </div>
         </div>
 
-        <!-- GUIA DE BOLSO APROFUNDADO -->
+        <!-- GUIA DE BOLSO -->
         <div style="background: white; border-radius: 48px; padding: 2.5rem; margin: 2.5rem 0;" class="no-print">
-            <h2 style="font-size: 2.2rem; border-left: 12px solid var(--primary-dark); padding-left: 1.5rem;"><i class="fas fa-bookmark"></i> Guia de bolso · Comparativo completo</h2>
+            <h2 style="font-size: 2.2rem; border-left: 12px solid var(--primary-dark); padding-left: 1.5rem;"><i class="fas fa-bookmark"></i> Guia de bolso · Comparativo</h2>
             
             <div class="guia-grid">
                 <div class="guia-card sepse-card">
                     <h3><i class="fas fa-bolt"></i> Sepse</h3>
                     <ul>
-                        <li><i class="fas fa-check-circle"></i> <strong>Amostras:</strong> 2-3 sítios diferentes</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Coleta:</strong> Antes do ATB</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Lactato:</strong> 1ª hora</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>ATB:</strong> 1ª hora</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Cristaloides:</strong> 30 mL/kg se hipotensão</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Reavaliação:</strong> Diária, suspender se descartado</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>2 sítios diferentes</strong> (40 mL totais)</li>
+                        <li><i class="fas fa-check-circle"></i> Coletar antes do ATB</li>
+                        <li><i class="fas fa-check-circle"></i> Lactato: 1ª hora + 2ª coleta 2-4h</li>
+                        <li><i class="fas fa-check-circle"></i> ATB na 1ª hora</li>
+                        <li><i class="fas fa-check-circle"></i> Cristaloides 30 mL/kg se hipotensão</li>
                     </ul>
                 </div>
                 
                 <div class="guia-card neutro-card">
-                    <h3><i class="fas fa-biohazard"></i> Neutropenia Febril</h3>
+                    <h3><i class="fas fa-biohazard"></i> Neutropenia</h3>
                     <ul>
-                        <li><i class="fas fa-check-circle"></i> <strong>Amostras:</strong> 3 sítios diferentes (1/3,2/3,3/3)</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Definição:</strong> Neutrófilos <500 ou febre ≥37,8°C</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Exames:</strong> Hemoculturas, gasometria, lactato</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>ATB empírico:</strong> Cefepime/Pip/Tazo/Meropenem</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>+ Vancomicina:</strong> Se infecção de cateter</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>MRSA/VRE:</strong> Linezolida 600mg 12/12h</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>3 sítios diferentes</strong> (60 mL totais)</li>
+                        <li><i class="fas fa-check-circle"></i> Identificar 1/3, 2/3, 3/3</li>
+                        <li><i class="fas fa-check-circle"></i> Neutrófilos <500 ou febre ≥37,8°C</li>
+                        <li><i class="fas fa-check-circle"></i> Cefepime/Pip/Tazo/Meropenem</li>
+                        <li><i class="fas fa-check-circle"></i> Vancomicina se cateter (ataque 25-30 mg/kg)</li>
                     </ul>
                 </div>
                 
                 <div class="guia-card id-card">
                     <h3><i class="fas fa-tag"></i> Identificação</h3>
                     <ul>
-                        <li><i class="fas fa-check-circle"></i> Nome completo + prontuário</li>
+                        <li><i class="fas fa-check-circle"></i> Nome + prontuário</li>
                         <li><i class="fas fa-check-circle"></i> Data/hora com minutos</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>SÍTIO + numeração (1/3,2/3,3/3)</strong></li>
-                        <li><i class="fas fa-check-circle"></i> Coletor (nome + COREN)</li>
-                        <li><i class="fas fa-check-circle"></i> Não cobrir código de barras</li>
-                        <li><i class="fas fa-check-circle"></i> Sensor óptico livre</li>
-                        <li><i class="fas fa-check-circle"></i> Etiqueta no corpo do frasco</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>SÍTIO + numeração</strong></li>
+                        <li><i class="fas fa-check-circle"></i> Coletor (COREN)</li>
+                        <li><i class="fas fa-check-circle"></i> Não cobrir código/sensor</li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <!-- INDICADORES -->
+        <!-- INDICADORES NIRAS -->
         <div style="background: white; border-radius: 48px; padding: 2.5rem; margin: 2.5rem 0;" class="no-print" id="indicadores">
             <h2 style="font-size: 2.2rem; border-left: 12px solid var(--primary-dark); padding-left: 1.5rem;"><i class="fas fa-chart-line"></i> Indicadores · NIRAS</h2>
             <div class="indicadores-grid">
-                <div class="indicador-card"><i class="fas fa-clock"></i> <strong>Hemograma na 1ª hora</strong><br>Nº com coleta / total neutropênicos</div>
+                <div class="indicador-card"><i class="fas fa-droplet"></i> <strong>Lactato na 1ª hora</strong><br>Nº com coleta / total sepse</div>
                 <div class="indicador-card"><i class="fas fa-syringe"></i> <strong>Hemocultura antes do ATB</strong><br>Nº que coletou antes / total</div>
                 <div class="indicador-card"><i class="fas fa-capsules"></i> <strong>ATB adequado na 1ª hora</strong><br>Nº com ATB espectro adequado / total</div>
-                <div class="indicador-card"><i class="fas fa-heartbeat"></i> <strong>Óbito</strong><br>Nº óbitos / total neutropênicos</div>
+                <div class="indicador-card"><i class="fas fa-heartbeat"></i> <strong>Óbito</strong><br>Nº óbitos / total</div>
             </div>
             <p style="background: #dcf0f5; border-radius: 50px; padding: 1rem 2rem; margin-top: 1.5rem;">
                 <i class="fas fa-chart-pie"></i> Gerenciamento diário: enfermeira do NIRAS · Apresentação mensal
             </p>
         </div>
 
-        <!-- QUIZ FUNCIONAL -->
+        <!-- QUIZ -->
         <div style="background: white; border-radius: 48px; padding: 2.5rem; margin: 2.5rem 0;" class="no-print">
-            <h2 style="font-size: 2.2rem; border-left: 12px solid var(--primary-dark); padding-left: 1.5rem;"><i class="fas fa-puzzle-piece"></i> Quiz rápido (clique para ver a resposta)</h2>
-            
+            <h2 style="font-size: 2.2rem; border-left: 12px solid var(--primary-dark); padding-left: 1.5rem;"><i class="fas fa-puzzle-piece"></i> Quiz rápido</h2>
             <div class="quiz-grid">
-                <div class="quiz-item" onclick="toggleQuiz(this)">
-                    <div class="quiz-pergunta">
-                        <span>🔹 Quantas amostras na neutropenia?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="quiz-resposta">3 amostras de sítios diferentes (identificar 1/3, 2/3, 3/3).</div>
-                </div>
-                
-                <div class="quiz-item" onclick="toggleQuiz(this)">
-                    <div class="quiz-pergunta">
-                        <span>🔹 O que é sepse provável?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="quiz-resposta">Foco infeccioso + disfunção OU SRIS + fatores de risco (imunossupressão, comorbidades, idade avançada).</div>
-                </div>
-                
-                <div class="quiz-item" onclick="toggleQuiz(this)">
-                    <div class="quiz-pergunta">
-                        <span>🔹 Volume insuficiente: o que fazer?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="quiz-resposta">Encher só o frasco AERÓBIO com 8-10 mL e enviar apenas ele. Nunca dividir pouco sangue!</div>
-                </div>
-                
-                <div class="quiz-item" onclick="toggleQuiz(this)">
-                    <div class="quiz-pergunta">
-                        <span>🔹 Quando usar vancomicina na neutropenia?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="quiz-resposta">Se infecção de cateter, bacteremia, MRSA, infecção de pele ou mucosite grau II. Dose de ataque: 25-30 mg/kg.</div>
-                </div>
-                
-                <div class="quiz-item" onclick="toggleQuiz(this)">
-                    <div class="quiz-pergunta">
-                        <span>🔹 Qual o tempo de secagem da antissepsia?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="quiz-resposta">1 a 2 minutos. Não assoprar, não tocar. O álcool mata ao secar.</div>
-                </div>
-                
-                <div class="quiz-item" onclick="toggleQuiz(this)">
-                    <div class="quiz-pergunta">
-                        <span>🔹 O que é sepse possível?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="quiz-resposta">Foco infeccioso + SRIS sem disfunção e sem fatores de risco. Investigar por até 3h, postergar ATB.</div>
-                </div>
+                <div class="quiz-item" onclick="toggleQuiz(this)"><div class="quiz-pergunta">🔹 Quantas amostras na sepse? <i class="fas fa-chevron-down"></i></div><div class="quiz-resposta">2 sítios diferentes (20 mL cada, 40 mL totais).</div></div>
+                <div class="quiz-item" onclick="toggleQuiz(this)"><div class="quiz-pergunta">🔹 Quantas amostras na neutropenia? <i class="fas fa-chevron-down"></i></div><div class="quiz-resposta">3 sítios diferentes (20 mL cada, 60 mL totais). Identificar 1/3, 2/3, 3/3.</div></div>
+                <div class="quiz-item" onclick="toggleQuiz(this)"><div class="quiz-pergunta">🔹 O que é sepse provável? <i class="fas fa-chevron-down"></i></div><div class="quiz-resposta">Foco infeccioso + disfunção OU SRIS + fatores de risco.</div></div>
+                <div class="quiz-item" onclick="toggleQuiz(this)"><div class="quiz-pergunta">🔹 Quando usar vancomicina na neutropenia? <i class="fas fa-chevron-down"></i></div><div class="quiz-resposta">Infecção de cateter/bacteremia. Dose de ataque 25-30 mg/kg.</div></div>
             </div>
         </div>
 
-        <!-- CHECKLIST IMPRIMÍVEL - CORRIGIDO -->
+        <!-- CHECKLIST IMPRIMÍVEL -->
         <div class="checklist-container" id="checklist-print">
             <h2><i class="fas fa-clipboard-list"></i> Checklist de coleta</h2>
             <button class="badge no-print" onclick="imprimirChecklist()" style="background: var(--primary-dark); color: white; border: none; padding: 0.8rem 2.5rem; font-size: 1.1rem; margin: 1.5rem 0; cursor: pointer;">
@@ -927,7 +907,7 @@
 ▢ Escolha do sítio: 2 (sepse) ou 3 (neutropenia) locais diferentes
 ▢ Antissepsia da pele: clorexidina alcoólica 30s + secagem TOTAL (1-2 min)
 ▢ Coleta de lactato (sepse) / gasometria (neutropenia)
-▢ Volume: 8-10 mL por frasco (se insuficiente, encher só aeróbio)
+▢ Volume: 10 mL por frasco (20 mL/sítio) · Se insuficiente, encher só aeróbio
 ▢ Inoculação na ordem correta (seringa: 1º anaeróbio; butterfly: 1º aeróbio)
 ▢ Homogeneização suave (inversão 5-8x)
 ▢ Identificação completa: NOME, DATA/HORA, SÍTIO (1/3,2/3,3/3), COLETOR
@@ -938,21 +918,14 @@
         </div>
 
         <footer class="no-print">
-            <p>Protocolo Institucional PRO.INS.01 · Hospital Bem-T Care · NIRAS · Qualidade</p>
-            <p>© 2026 · Capacitação para enfermeiros e técnicos · Versão 2.0</p>
+            <p>Protocolos PRO.INS.01 (Sepse) e PRO.INS.02 (Neutropenia) · Hospital Bem-T Care · NIRAS</p>
+            <p>© 2026 · Capacitação oficial · Versão institucional</p>
         </footer>
     </main>
 
     <script>
-        // Função para toggle do quiz
-        function toggleQuiz(element) {
-            element.classList.toggle('ativo');
-        }
-        
-        // Função para imprimir apenas o checklist
-        function imprimirChecklist() {
-            window.print();
-        }
+        function toggleQuiz(element) { element.classList.toggle('ativo'); }
+        function imprimirChecklist() { window.print(); }
     </script>
 </body>
 </html>
